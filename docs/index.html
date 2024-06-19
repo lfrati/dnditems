@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="icon" href="icon.png" type="image/png" />
+    <title>dndspells</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header class="search-container">
+      <input type="text" id="searchInput" placeholder="Search for spell..." />
+      <button disabled id="undo-button" onclick="undo()">Undo</button>
+      <button onclick="remove_all(true)">Clear</button>
+      <button id="save-button">Save</button>
+      <input
+        id="load-spells"
+        type="file"
+        accept=".json"
+        style="display: none"
+      />
+      <label for="load-spells" class="button">Load</label>
+      <ul id="suggestions" style="list-style: none"></ul>
+    </header>
+
+    <div id="cards-container"></div>
+
+    <script type="text/javascript" src="items.js"></script>
+    <script type="text/javascript" src="logic.js"></script>
+  </body>
+</html>

@@ -1,0 +1,340 @@
+html {
+  overscroll-behavior: none; /* Prevents the bounce effect */
+  font-size: 12px;
+  background-color: #fff;
+  background-image: radial-gradient(#999 5%, transparent 0);
+  background-size: 35px 35px;
+  /* background-image: linear-gradient(
+      90deg,
+      transparent 79px,
+      #abced4 79px,
+      #abced4 81px,
+      transparent 81px
+    ),
+    linear-gradient(#eee 0.1em, transparent 0.1em);
+  background-size: 100% 1.2em; */
+}
+
+body {
+  overscroll-behavior: none; /* Prevents the bounce effect */
+  display: block;
+}
+
+/* from https://github.com/jonathonf/solbera-dnd-fonts/tree/master */
+@font-face {
+  font-family: "MrEaves";
+  src: url("fonts/Mr\ Eaves\ Small\ Caps.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Nodesto";
+  src: url("fonts/NodestoCapsCondensed-Bold.otf") format("opentype");
+  font-weight: bold;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Bookinsanity";
+  src: url("fonts/Bookinsanity.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Bookinsanity";
+  src: url("fonts/Bookinsanity\ Bold.otf") format("opentype");
+  font-weight: bold;
+  font-style: normal;
+}
+
+.search-container {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  background: rgba(165, 180, 205, 0.594);
+  width: 100%;
+}
+
+#searchInput {
+  margin-left: 1rem;
+}
+
+.search-container p {
+  font-family: "Roboto", sans-serif;
+  font-size: 14px;
+  display: grid;
+  align-items: center;
+  color: rgb(168, 165, 165);
+  margin: 0 0 0 2rem;
+}
+
+/* SUGGESTIONS */
+#suggestions {
+  font-family: "Roboto", sans-serif;
+  position: absolute;
+  top: 100%; /* Position below the input field */
+  left: 0; /* Align to the left of the input field */
+  z-index: 100; /* Ensures the list is on top of other content */
+  width: 20rem;
+  background-color: white;
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+}
+/* 
+I'm setting suggestions' borders to be only top bottom 
+because the left/right is provided by li's.
+I'm setting the top/bottom to be half of left/right so that 
+2 consecutive elements form the desired thickness
+*/
+#suggestions li {
+  border-style: solid;
+  border-color: grey;
+  border-width: 0.5px 1px;
+  padding: 10px;
+  background: white;
+  display: flex;
+  justify-content: space-between;
+  cursor: pointer;
+}
+
+#suggestions li:hover {
+  background-color: #f0f0f0;
+}
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+  border-bottom: 1px dotted black;
+}
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: fit-content;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px;
+
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+}
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}
+
+#cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: left;
+  padding: 1rem;
+  align-items: flex-start; /* Ensure flex items start at the top */
+}
+
+p#info em {
+  color: grey;
+}
+
+a {
+  text-decoration: none;
+  color: blue;
+  /* pointer-events: none; */
+}
+
+#itemname {
+  font-family: "MrEaves";
+  /* font-family: "Nodesto"; */
+  /* font-family: "Bookinsanity"; */
+}
+
+.card {
+  /* font-family: "Bookinsanity"; */
+  font-family: "Arial";
+  background-color: white;
+  width: 40rem;
+  padding: 1rem;
+  box-shadow: 0 0 1rem rgba(0, 0, 0, 0.1);
+  margin: 1rem;
+  box-sizing: border-box;
+  border: 3px solid #a76f2f;
+  border-radius: 1rem;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  break-inside: avoid;
+  align-self: flex-start; /* Prevent stretching */
+}
+
+.card h1 {
+  background-color: white;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+  font-size: 2rem;
+  margin: 0;
+  margin-left: 0.5rem;
+  text-align: center;
+}
+
+.card h2 {
+  font-size: 1.2rem;
+  color: rgb(168, 165, 165);
+  margin: 0.2rem 0;
+  margin-left: 1rem;
+  text-align: left;
+}
+
+.card .details {
+  display: grid;
+  background-color: white;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin: 1rem 0;
+}
+
+.card .detail {
+  text-align: center;
+}
+
+.card .detail strong {
+  display: block;
+  font-size: 1rem;
+  color: #d00000;
+}
+
+.card .detail span {
+  display: block;
+  font-size: 1rem;
+  color: black;
+}
+
+.card .description {
+  /* font-size: 12px; */
+  background-color: white;
+  color: black;
+  margin: 10px 0;
+}
+
+.card .description p {
+  font-size: 1rem;
+  margin: 10px 0;
+  text-align: justify;
+}
+
+.card .description ul {
+  padding: 0.5rem;
+  margin: 0 0 0 1rem;
+  font-size: 0.7 rem;
+}
+
+/* .card:hover {
+  transform: scale(1.05);
+} */
+
+.card-c {
+  font-family: "Roboto", sans-serif;
+  width: 2rem;
+  height: 2rem;
+  font-size: 1rem;
+  margin: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: black;
+  color: white;
+  font-weight: bold;
+  border-radius: 50%; /* Makes it a circle */
+  flex-shrink: 0; /* Prevents the circle from shrinking */
+}
+
+@media print {
+  @page {
+    size: auto;
+    margin: 0mm;
+  }
+
+  html {
+    font-size: 8px;
+  }
+
+  body {
+    margin: 0;
+  }
+
+  .search-container {
+    height: 0mm;
+    visibility: hidden;
+  }
+  .card:hover {
+    transform: scale(1);
+  }
+}
+
+button,
+label {
+  font-family: "Arial";
+  font-size: 1rem;
+  display: inline-block;
+  outline: 0;
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  font-size: 1.2rem;
+  font-weight: 500;
+  line-height: 20px;
+  vertical-align: middle;
+  margin-left: 1rem;
+  border: 1px solid;
+  border-radius: 6px;
+  color: black;
+  background-color: #fafbfc;
+  border-color: #1b1f2326;
+  box-shadow: rgba(27, 31, 35, 0.04) 0px 1px 0px 0px,
+    rgba(255, 255, 255, 0.25) 0px 1px 0px 0px inset;
+  transition: 0.2s cubic-bezier(0.3, 0, 0.5, 1);
+  transition-property: color, background-color, border-color;
+}
+button:hover,
+label:hover {
+  color: #ffffff;
+  background-color: #0366d6;
+  border-color: #1b1f2326;
+  box-shadow: rgba(27, 31, 35, 0.1) 0px 1px 0px 0px,
+    rgba(255, 255, 255, 0.03) 0px 1px 0px 0px inset;
+  transition-duration: 0.1s;
+}
+button:disabled {
+  /* cursor: not-allowed; */
+  color: #aaa;
+  background-color: #e0e0e0;
+  border-color: #d0d0d0;
+  box-shadow: none;
+}
+
+/* General table styling */
+table {
+  width: 100%;
+  border-collapse: collapse; /* Ensures borders are shared between cells */
+  font-size: 1em; /* Adjusts font size */
+  text-align: left; /* Aligns text to the left */
+}
+
+th {
+  background-color: #e1bf95; /* Light gray background */
+  padding: 0.5em; /* Adds padding inside header cells */
+  border-bottom: 2px solid #ddd; /* Adds bottom border */
+  font-weight: bold; /* Makes header text bold */
+}
+
+/* Table body styling */
+tbody tr {
+  border-bottom: 1px solid #ddd; /* Adds bottom border to each row */
+}
+
+tbody tr:hover {
+  background-color: #f1f1f1; /* Highlights row on hover */
+}
+
+td {
+  padding: 12px; /* Adds padding inside table cells */
+}

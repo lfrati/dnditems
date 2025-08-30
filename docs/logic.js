@@ -179,7 +179,7 @@ document.getElementById("save-button").addEventListener("click", function () {
 });
 
 document
-  .getElementById("load-spells")
+  .getElementById("load-items")
   .addEventListener("change", function (event) {
     const file = event.target.files[0];
 

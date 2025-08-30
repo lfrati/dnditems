@@ -14,17 +14,17 @@
   </head>
   <body>
     <header class="search-container">
-      <input type="text" id="searchInput" placeholder="Search for spell..." />
+      <input type="text" id="searchInput" placeholder="Search for item..." />
       <button disabled id="undo-button" onclick="undo()">Undo</button>
       <button onclick="remove_all(true)">Clear</button>
       <button id="save-button">Save</button>
       <input
-        id="load-spells"
+        id="load-items"
         type="file"
         accept=".json"
         style="display: none"
       />
-      <label for="load-spells" class="button">Load</label>
+      <label for="load-items" class="button">Load</label>
       <ul id="suggestions" style="list-style: none"></ul>
     </header>
 
